@@ -1,0 +1,42 @@
+SINCRONIZAÇÃO DO PROGRESSO NO NETLIFY
+=====================================
+
+O que tem aqui
+  public/index.html                  -> o arquivo com os 18 cadernos e o dashboard
+  netlify/functions/sync.mjs         -> função que guarda e mescla o progresso (Netlify Blobs)
+  package.json, netlify.toml         -> configuração
+
+IMPORTANTE: só arrastar o index.html NÃO ativa a sincronização.
+A função precisa ser publicada junto. Use um dos caminhos abaixo.
+
+CAMINHO A – Netlify CLI (mais simples, sem GitHub)
+  1) Instale o Node.js (nodejs.org) e, no terminal:
+       npm install -g netlify-cli
+       netlify login
+  2) Entre na pasta deste pacote (a que tem o netlify.toml) e rode:
+       npm install
+       netlify link          (escolha o seu site que já existe)   [ou: netlify init]
+       netlify deploy --prod
+  3) Abra o site, vá em "Dashboard geral" > "Sincronização entre aparelhos".
+
+CAMINHO B – Git
+  1) Crie um repositório no GitHub com o conteúdo desta pasta.
+  2) No Netlify: Add new site > Import from Git. Ele lê o netlify.toml sozinho
+     (publish = public, functions = netlify/functions) e instala o @netlify/blobs.
+
+COMO USAR
+  - Em cada aparelho: abra o site, "Dashboard geral" > "Ativar com um código secreto",
+    e digite o MESMO código (8 ou mais caracteres, difícil de adivinhar).
+  - O progresso é sincronizado ao abrir o site, ao trocar de caderno, ao sair da
+    página e a cada 3 minutos. Vale a resposta mais recente de cada questão.
+  - Quem souber o seu código consegue ler e alterar o seu progresso: não o divulgue.
+
+CUSTO
+  Funções e Blobs têm cota gratuita no plano gratuito do Netlify, suficiente para uso pessoal.
+  Confira as condições atuais no painel do Netlify.
+
+SE NÃO FUNCIONAR
+  - Painel do Netlify > Functions: a função "sync" deve aparecer. Se não aparecer, a
+    função não foi publicada (use o Caminho A ou B).
+  - O dashboard mostra o motivo ("Sem conexão com a nuvem ...").
+  - O backup manual (código TCEMA1 / arquivo) continua funcionando.

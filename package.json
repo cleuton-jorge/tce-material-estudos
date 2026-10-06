@@ -1,0 +1,8 @@
+{
+  "name": "tcema-cadernos",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "latest"
+  }
+}
